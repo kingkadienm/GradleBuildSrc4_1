@@ -1,0 +1,53 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        google()
+        jcenter()
+
+
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.2'
+     }
+}
+
+// Component
+apply plugin: 'component.appconfig'
+appConfig {
+    debugEnable true
+    apps {
+        app {
+            modules  ':account'
+            applicationName '.MyApplication'
+        }
+    }
+    modules {
+        account {
+            name ':account'
+            mainActivity ".AccountActivity"
+            applicationId "com.wangzs.account"
+            isRunAlone false
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+
+    }
+    //编码 ，javadoc 检查忽略
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

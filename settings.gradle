@@ -1,0 +1,4 @@
+
+rootProject.name = "GradleBuildSrc4_1"
+include ':app'
+include ':account'
